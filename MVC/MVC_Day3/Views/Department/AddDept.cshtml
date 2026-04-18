@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Add Department";
+}
+
+<h2>Add New Department</h2>
+
+<form method="post" asp-controller="Department" asp-action="SaveAdd">
+    
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Manager Name</label>
+        <input type="text" name="MgrName" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-controller="Department" asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>
