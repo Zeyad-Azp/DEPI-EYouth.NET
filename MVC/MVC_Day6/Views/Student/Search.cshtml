@@ -1,0 +1,26 @@
+﻿@model List<Student>
+@{
+	ViewData["Title"] = "Search Result";
+}
+<h2>Student Details</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Age</td>
+                <td>@student.dept?.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Back</a>

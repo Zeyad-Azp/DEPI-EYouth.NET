@@ -1,0 +1,43 @@
+﻿@using MVC_Day6.ViewModels.Course
+@{
+    ViewData["Title"] = "Student Course Lookup";
+}
+@model StudentCourseSearchViewModel
+<div class="container mt-5">
+    <div class="card shadow-lg p-5">
+
+        <h2 class="text-center text-primary mb-4">
+            🔍 Search Student Course Result
+        </h2>
+
+        <form asp-controller="Course" asp-action="StudentCourse" method="post">
+
+            <!-- Student Id -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Student ID</label>
+                <input asp-for="StudId" class="form-control" placeholder="Enter Student ID"/>
+            </div>
+
+            <!-- Course Id -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Course ID</label>
+                <input asp-for="CourseId" class="form-control" placeholder="Enter Course ID"/>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a asp-controller="Course" asp-action="Index" class="btn btn-secondary">
+                    ⬅ Back
+                </a>
+
+                <button type="submit" class="btn btn-success px-4">
+                    🔎 Search
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

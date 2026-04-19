@@ -1,0 +1,50 @@
+﻿@using MVC_Day6.ViewModels.Course
+@model StudentCourseViewModel
+
+@{
+    ViewData["Title"] = "Student Course Result";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-5 text-center">
+
+        <h2 class="mb-4 text-primary">📊 Student Course Result</h2>
+
+        <!-- Student Name -->
+        <div class="mb-3">
+            <h5 class="text-muted">Student</h5>
+            <h3 class="fw-bold text-dark">@Model.StudentName</h3>
+        </div>
+
+        <!-- Course Name -->
+        <div class="mb-3">
+            <h5 class="text-muted">Course</h5>
+            <h4 class="text-success">@Model.CourseName</h4>
+        </div>
+
+        <!-- Grade -->
+        <div class="mb-4">
+            <h5 class="text-muted">Grade</h5>
+            <span class="badge bg-info text-dark fs-4 px-4 py-2">
+                @Model.grade
+            </span>
+        </div>
+
+        <!-- Result -->
+        <div class="mb-4">
+            <h5 class="text-muted">Result</h5>
+
+            <span class="badge @Model.ResultClass fs-5 px-4 py-2">
+                @Model.Result
+            </span>
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-4">
+            <a asp-controller="Course" asp-action="Index" class="btn btn-secondary px-4">
+                ⬅ Back
+            </a>
+        </div>
+
+    </div>
+</div>

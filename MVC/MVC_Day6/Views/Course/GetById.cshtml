@@ -1,0 +1,48 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-5">
+        <h2 class="text-center text-primary mb-4">📖 Course Details</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>ID:</strong>
+                <p class="text-muted">@Model.Id</p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Name:</strong>
+                <p class="text-success fw-bold">@Model.Name</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Degree:</strong>
+                <p class="badge bg-info fs-6">@Model.Degree</p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Min Degree:</strong>
+                <p class="badge bg-warning text-dark fs-6">@Model.MinDegree</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <strong>Department:</strong>
+                <p class="text-secondary">@Model.Dept?.Name</p>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a asp-controller="Course" asp-action="Index" class="btn btn-secondary">
+                ⬅ Back to List
+            </a>
+        </div>
+    </div>
+</div>

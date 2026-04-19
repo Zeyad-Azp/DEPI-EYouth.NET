@@ -1,0 +1,31 @@
+﻿@using MVC_Day6.Models
+@model List<Department>
+
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h2>Departments List</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Manager Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dept in Model)
+        {
+            <tr>
+                <td>@dept.Id</td>
+                <td>@dept.Name</td>
+                <td>@dept.MgrName</td>
+                <td><a asp-controller="Department" asp-action="ShowDetails" asp-route-id="@dept.Id" class="btn btn-primary">View Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Department" asp-action="AddDept" class="btn btn-primary">Add New Department</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home</a>

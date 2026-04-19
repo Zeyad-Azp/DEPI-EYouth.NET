@@ -1,0 +1,33 @@
+﻿@using MVC_Day6.ViewModels.Course
+@model DeleteCourseViewModel
+
+@{
+    ViewData["Title"] = "Delete Course";
+}
+
+<h2 class="text-danger">Delete Course</h2>
+
+<h4 class="text-danger">Are you sure you want to delete this Course?</h4>
+
+<hr />
+
+<div class="card p-3">
+    <p class="text-danger"><strong>ID:</strong> @Model.Id</p>
+    <p class="text-danger"><strong>Name:</strong> @Model.Name</p>
+    <p class="text-danger"><strong>Degree:</strong> @Model.Degree</p>
+    <p class="text-danger"><strong>Minimum Degree:</strong> @Model.MinDegree</p>
+    <p class="text-danger"><strong>Department:</strong> @Model?.DepartmentName</p>
+</div>
+
+<br />
+
+<form method="post" asp-controller="Course" asp-action="ConfirmDelete" asp-route-id="@Model.Id">
+
+    @* <!-- Hidden ID -->
+    <input type="hidden" asp-for="Id" /> *@
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+
+    <a asp-controller="Course" asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>
