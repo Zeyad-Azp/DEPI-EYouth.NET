@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .feature-card {
+        border: none;
+        border-radius: 15px;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-header-custom {
+        background: linear-gradient(135deg, #4e73df, #224abe);
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 15px;
+        font-weight: bold;
+    }
+
+    .action-link {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        transition: 0.2s;
+    }
+
+    .action-link:hover {
+        background-color: #f1f3f8;
+        padding-left: 15px;
+        color: #224abe;
+    }
+
+    .page-title {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="text-center mb-4">
+    <h1 class="display-4 page-title">Welcome</h1>
+    <p>ASP.NET Core MVC Dashboard</p>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <!-- Students -->
+        <div class="col-md-6 mb-4">
+            <div class="card feature-card">
+                <div class="card-header-custom">
+                    Students
+                </div>
+                <div class="card-body">
+                    <a class="action-link" asp-controller="Student" asp-action="Index">
+                        View / Update / Delete Students
+                    </a>
+                    <a class="action-link" asp-controller="Student" asp-action="AddStudent">
+                        Add Students
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departments -->
+        <div class="col-md-6 mb-4">
+            <div class="card feature-card">
+                <div class="card-header-custom">
+                    Departments
+                </div>
+                <div class="card-body">
+                    <a class="action-link" asp-controller="Department" asp-action="Index">
+                        View All Departments
+                    </a>
+                    <a class="action-link" asp-controller="Department" asp-action="AddDept">
+                        Add Department
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

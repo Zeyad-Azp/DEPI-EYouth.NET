@@ -1,0 +1,45 @@
+﻿@model List<Student>
+@{
+	ViewData["Title"] = "Students";
+}
+<h2>Student List</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td><a asp-controller="Student" asp-action="ShowDetails" asp-route-id="@student.Id" class="btn btn-primary">View Details</a></td>
+                <td><a asp-controller="Student" asp-action="Update" asp-route-id="@student.Id" class="btn btn-primary">Update</a></td>
+                <td><a asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id" class="btn btn-primary">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="student" asp-action="AddStudent" class="btn btn-primary">Add New Students</a>
+
+
+
+<form asp-controller="Student" asp-action="Search">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name = "name" class = "form-control"></input>
+    </div>
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
+
+<form asp-controller="Student" asp-action="Filter">
+    <div class="form-group">
+        <select name="DepartmentId" asp-items="ViewBag.Departments" class="form-control">
+            <option value="">-- Select Department --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Filter</button>
+</form>
+
