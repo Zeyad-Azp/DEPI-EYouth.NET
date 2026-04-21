@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="row justify-content-center mt-4">
+
+    <div class="col-md-5">
+
+        <div class="card text-white bg-dark shadow-lg border-0 rounded-4">
+
+            <div class="card-body text-center p-4">
+
+                <h3 class="card-title mb-3">Task Manager</h3>
+
+                <p class="card-text text-light">
+                    View all your tasks, manage status, and track deadlines easily.
+                </p>
+
+                <a asp-controller="TaskItem"
+                   asp-action="Index"
+                   class="btn btn-success btn-lg px-4 mt-3 shadow">
+                    🚀 Go to All Tasks
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

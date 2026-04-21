@@ -1,0 +1,247 @@
+﻿@using Application.ViewModels.TaskItem
+@model IEnumerable<GetByIdTaskItemViewModel>
+
+<style>
+    .page-wrapper {
+        max-width: 860px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 14px;
+    }
+
+    .page-header h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0;
+    }
+
+    .sort-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px 16px;
+    }
+
+    .sort-bar label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #475569;
+        margin: 0;
+    }
+
+    .sort-bar select {
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        font-size: 0.85rem;
+        color: #1e293b;
+        background: #fff;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .sort-bar select:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+    }
+
+    .task-count {
+        margin-left: auto;
+        font-size: 0.82rem;
+        color: #94a3b8;
+    }
+
+    .task-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #22c55e;
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        transition: box-shadow 0.2s ease;
+    }
+
+    .task-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .task-card h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .task-card h4::before {
+        content: '✔';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        background: #22c55e;
+        color: white;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+    }
+
+    .task-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 24px;
+        font-size: 0.88rem;
+        color: #475569;
+    }
+
+    .task-meta p {
+        margin: 0;
+    }
+
+    .task-meta strong {
+        color: #334155;
+    }
+
+    .task-meta .description-row {
+        grid-column: 1 / -1;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        background: #dcfce7;
+        color: #15803d;
+    }
+
+    .due-date-overdue {
+        color: #dc2626;
+        font-weight: 600;
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 10px 22px;
+        background: #f59e0b;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-back:hover {
+        background: #d97706;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #94a3b8;
+        font-size: 1rem;
+    }
+</style>
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <h2>✅ Completed Tasks In Details</h2>
+    </div>
+    <!-- Task Cards -->
+    <div id="taskList">
+        @if (!Model.Any())
+        {
+            <div class="empty-state">No completed tasks found.</div>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <div class="task-card"
+                     data-title="@item.Title"
+                     data-created="@item.CreatedAt.ToString("yyyy-MM-dd")"
+                     data-due="@(item.DueDate.HasValue ? item.DueDate.Value.ToString("yyyy-MM-dd") : "9999-12-31")">
+
+                    <h4>@item.Title</h4>
+
+                    <div class="task-meta">
+                        <p class="description-row">
+                            <strong>Description:</strong> @item.Description
+                        </p>
+                        <p>
+                            <strong>Status:</strong>
+                            <span class="status-badge @item.StyleClass">@item.Status</span>
+                        </p>
+                        <p>
+                            <strong>Created At:</strong> @item.CreatedAt.ToString("yyyy-MM-dd")
+                        </p>
+                        <p>
+                            <strong>Due Date:</strong>
+                            @if (item.DueDate.HasValue)
+                            {
+                                var isOverdue = item.DueDate.Value < DateTime.Today;
+                                <span class="@(isOverdue ? "due-date-overdue" : "")">
+                                    @item.DueDate.Value.ToString("yyyy-MM-dd")
+                                    @if (isOverdue){ <span>(Overdue)</span> }
+                                </span>
+                            }
+                            else
+                            {
+                                <span>No Due Date</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <a asp-controller="TaskItem" asp-action="Index" class="btn-back">← Back</a>
+</div>
+
+<script>
+    function sortTasks(value) {
+        const list = document.getElementById('taskList');
+        const cards = Array.from(list.querySelectorAll('.task-card'));
+
+        cards.sort((a, b) => {
+            switch (value) {
+                case 'date-asc':  return a.dataset.created.localeCompare(b.dataset.created);
+                case 'date-desc': return b.dataset.created.localeCompare(a.dataset.created);
+                case 'due-asc':   return a.dataset.due.localeCompare(b.dataset.due);
+                case 'due-desc':  return b.dataset.due.localeCompare(a.dataset.due);
+                case 'title-asc': return a.dataset.title.localeCompare(b.dataset.title);
+                case 'title-desc':return b.dataset.title.localeCompare(a.dataset.title);
+                default: return 0;
+            }
+        });
+
+        cards.forEach(card => list.appendChild(card));
+    }
+</script>

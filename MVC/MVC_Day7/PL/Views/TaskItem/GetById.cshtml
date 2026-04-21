@@ -1,0 +1,30 @@
+﻿@using Application.ViewModels.TaskItem
+@model GetByIdTaskItemViewModel
+
+<h2>Task Details</h2>
+
+<div class="card p-3">
+
+    <h4>@Model.Title</h4>
+
+    <p><strong>Description:</strong> @Model.Description</p>
+
+    <p>
+        <strong>Status:</strong>
+        <span class=@Model.StyleClass>@Model.Status</span>
+    </p>
+
+    <p><strong>Created At:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd")</p>
+
+    <p>
+        <strong>Due Date:</strong>
+        @(Model.DueDate.HasValue ? Model.DueDate.Value.ToString("yyyy-MM-dd") : "No Due Date")
+    </p>
+
+</div>
+
+<br />
+
+<a asp-controller="TaskItem" asp-action="Index" class="btn btn-secondary">
+    Back to List
+</a>
