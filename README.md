@@ -1,6 +1,6 @@
 # 📌 DEPI .NET Track Tasks
 
-This repository contains my tasks and practice projects during the **DEPI .NET Track**. The goal of this repo is to strengthen my backend development skills using modern .NET technologies.
+This repository contains my tasks and practice projects during the **Digital Egypt Pioneers Initiative (DEPI) with Eyouth .NET Track**. The goal of this repo is to strengthen my backend development skills using modern .NET technologies.
 
 ---
 
